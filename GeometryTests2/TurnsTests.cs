@@ -12,27 +12,30 @@ namespace Geometry.Tests
     public class TurnsTests
     {
         [Test()]
-        public void TurnsTest()
-        {
-            Assert.Fail();
-        }
-
-        [Test()]
-        public void TurnsTest1()
-        {
-            Assert.Fail();
-        }
-
-        [Test()]
         public void IsTurnsCountOverTest()
         {
-            Assert.Fail();
+            Random random = new();
+            int turnsAmount = random.Next(1, 100);
+            Turns turns = new(turnsAmount);
+            for (int currentTurn = 1; currentTurn <= turnsAmount; currentTurn++)
+            {
+                Assert.AreEqual(false, turns.IsTurnsCountOver());
+                turns.IncrementCurrentTurnNumber();
+            }
+            Assert.AreEqual(true, turns.IsTurnsCountOver());
         }
 
         [Test()]
         public void IncrementCurrentTurnNumberTest()
         {
-            Assert.Fail();
+            Random random = new();
+            int turnsAmount = random.Next(1, 100);
+            Turns turns = new(turnsAmount);
+            for (int currentTurn = 1; currentTurn <= turnsAmount; currentTurn++)
+            {
+                turns.IncrementCurrentTurnNumber();
+                Assert.AreEqual(currentTurn, turns.CurrentTurnNumber);
+            }            
         }
     }
 }
