@@ -22,7 +22,7 @@ namespace Geometry
 
         public void StartGame()
         {
-            StartGame(SelectGameMode(), false, false, false);
+            StartGame(RequestGameMode(), false, false, false);
         }
         public void StartGame(int gameMode, bool allDefault)
         {
@@ -44,7 +44,7 @@ namespace Geometry
             string fillerSecondPlayer;
             int cols;
             int rows;
-            int turns = 0;
+            int turns;
             if (defaultPlayersNames)
             {
                 nameFirstPlayer = ("Player 1");
@@ -71,7 +71,7 @@ namespace Geometry
             }
             else
             {
-                SetBoardSize(out cols, out rows);
+                RequestBoardSize(out cols, out rows);
             }
             if (defaultTurnsCount)
             {
@@ -79,7 +79,7 @@ namespace Geometry
             }
             else
             {
-                turns = SetNumberOfTurns();
+                turns = RequestNumberOfTurns();
             }
             StartGame(gameMode, nameFirstPlayer, fillerFirstPlayer, nameSecondPlayer, fillerSecondPlayer, cols, rows, turns);
         }
@@ -125,7 +125,7 @@ namespace Geometry
         {
             while (!GameOver)
             {
-                CurrentTurns.IncrementTurnsCount();
+                CurrentTurns.IncrementCurrentTurnNumber();
                 if (CurrentTurns.CurrentTurnNumber == 1)
                 {
                     Console.WriteLine($"\nGame started! Current turn: {CurrentTurns.CurrentTurnNumber}.");

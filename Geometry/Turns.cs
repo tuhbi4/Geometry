@@ -18,7 +18,7 @@
             }
             return false;
         }
-        public void IncrementTurnsCount()
+        public void IncrementCurrentTurnNumber()
         {
             CurrentTurnNumber++;
         }

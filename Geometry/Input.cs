@@ -6,7 +6,7 @@ namespace Geometry
 {
     public static class Input
     {
-        public static int SelectGameMode()
+        public static int RequestGameMode()
         {
             int modeSelector;
             Console.WriteLine("Do you want to play against another player or the computer?\n1. Vs Player\n2. Vs Computer");
@@ -20,13 +20,13 @@ namespace Geometry
             }
             return modeSelector;
         }
-        public static void SetBoardSize(out int cols, out int rows)
+        public static void RequestBoardSize(out int cols, out int rows)
         {
             Console.WriteLine("Please set the size of the board. (mininum is: 20x30)");
             cols = InputValidation("columns", 20, 38);
             rows = InputValidation("rows", 30, 99);
         }
-        public static int SetNumberOfTurns()
+        public static int RequestNumberOfTurns()
         {
             return InputValidation("moves for the players ", 20, 3762);
         }

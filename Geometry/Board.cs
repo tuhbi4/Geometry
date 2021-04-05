@@ -22,7 +22,7 @@ namespace Geometry
         }
         public Board(int rows, int cols) : this(rows, cols, "    ") { }
         public Board() : this(30, 20) { }
-        private void FillBoardMatrix(int rows, int cols, string filler)
+        private static void FillBoardMatrix(int rows, int cols, string filler)
         {
             int width = cols + 4;
             int height = rows + 4;
