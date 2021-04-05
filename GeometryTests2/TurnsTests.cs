@@ -12,7 +12,7 @@ namespace Geometry.Tests
     public class TurnsTests
     {
         [Test()]
-        public void IsTurnsCountOverTest()
+        public void TestCase()
         {
             Random random = new();
             int turnsAmount = random.Next(1, 100);
@@ -21,21 +21,9 @@ namespace Geometry.Tests
             {
                 Assert.AreEqual(false, turns.IsTurnsCountOver());
                 turns.IncrementCurrentTurnNumber();
+                Assert.AreEqual(currentTurn, turns.CurrentTurnNumber);
             }
             Assert.AreEqual(true, turns.IsTurnsCountOver());
-        }
-
-        [Test()]
-        public void IncrementCurrentTurnNumberTest()
-        {
-            Random random = new();
-            int turnsAmount = random.Next(1, 100);
-            Turns turns = new(turnsAmount);
-            for (int currentTurn = 1; currentTurn <= turnsAmount; currentTurn++)
-            {
-                turns.IncrementCurrentTurnNumber();
-                Assert.AreEqual(currentTurn, turns.CurrentTurnNumber);
-            }            
         }
     }
 }
