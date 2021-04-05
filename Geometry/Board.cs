@@ -11,6 +11,7 @@ namespace Geometry
         public static string Filler { get; private set; }
         protected static string[,] BoardMatrix { get; private set; }
         private Point CurrentPoint { get; set; }
+
         public Board(int rows, int cols, string filler)
         {
             Cols = cols;
@@ -20,8 +21,15 @@ namespace Geometry
             BoardMatrix = new string[rows + 4, cols + 4];
             FillBoardMatrix(rows, cols, filler);
         }
-        public Board(int rows, int cols) : this(rows, cols, "    ") { }
-        public Board() : this(30, 20) { }
+
+        public Board(int rows, int cols) : this(rows, cols, "    ")
+        {
+        }
+
+        public Board() : this(30, 20)
+        {
+        }
+
         private static void FillBoardMatrix(int rows, int cols, string filler)
         {
             int width = cols + 4;
@@ -56,6 +64,7 @@ namespace Geometry
                 }
             }
         }
+
         public static void DrawBoard()
         {
             for (int rowIndex = 0; rowIndex < (BoardMatrix.GetUpperBound(0) + 1); rowIndex++)
@@ -67,6 +76,7 @@ namespace Geometry
                 Console.WriteLine();
             }
         }
+
         public void DrawField(Player player, Point CurrentPoint, int firstDice, int secondDice)
         {
             GetСoordinates(player, firstDice, secondDice);
@@ -93,6 +103,7 @@ namespace Geometry
                 Console.WriteLine($"{player.Name}, you have already filled {player.FilledCells} cells.");
             }
         }
+
         private void GetСoordinates(Player player, int firstDice, int secondDice)
         {
             if (player.Name.Equals("Computer"))
@@ -120,6 +131,7 @@ namespace Geometry
                 }
             }
         }
+
         public static bool IsPlacementFieldOnBooardPossible(int firstDice, int secondDice)
         {
             for (var rowIndex = 2; rowIndex < (BoardMatrix.GetUpperBound(0) - 2); rowIndex++)
@@ -136,11 +148,13 @@ namespace Geometry
             }
             return false;
         }
+
         private static bool IsFieldFitToBoard(int startCoordinateX, int startCoordinateY, int firstDice, int secondDice)
         {
             return startCoordinateY + firstDice - 1 <= Rows
              && startCoordinateX + secondDice - 1 <= Cols;
         }
+
         private static bool IsFieldOverlapAnotherField(int startCoordinateX, int startCoordinateY, int firstDice, int secondDice)
         {
             for (var rowIndex = startCoordinateY + 1; rowIndex < startCoordinateY + 1 + firstDice; rowIndex++)

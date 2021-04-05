@@ -20,16 +20,19 @@ namespace Geometry
             }
             return modeSelector;
         }
+
         public static void RequestBoardSize(out int cols, out int rows)
         {
             Console.WriteLine("Please set the size of the board. (mininum is: 20x30)");
             cols = InputValidation("columns", 20, 38);
             rows = InputValidation("rows", 30, 99);
         }
+
         public static int RequestNumberOfTurns()
         {
             return InputValidation("moves for the players ", 20, 3762);
         }
+
         public static string RequestName(string defaultName)
         {
             string name;
@@ -41,6 +44,7 @@ namespace Geometry
             }
             return name;
         }
+
         public static string RequestFiller(string defaultFiller, List<Player> players)
         {
             string filler;
@@ -73,6 +77,7 @@ namespace Geometry
             }
             return filler;
         }
+
         public static Point RequestСoordinates(int cols, int rows)
         {
             return new(InputValidation("coordinate X", 1, cols), InputValidation("coordinate Y", 1, rows));

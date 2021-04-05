@@ -13,6 +13,7 @@ namespace Geometry
             }
             return answer;
         }
+
         public static int InputValidation(string valueName, int min, int max)
         {
             int valueOut;
