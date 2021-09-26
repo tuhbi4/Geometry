@@ -7,11 +7,13 @@ namespace Geometry
     {
         public int FirstDice { get; private set; }
         public int SecondDice { get; private set; }
-        static readonly Random diceRandomValue = new();
+        private static readonly Random diceRandomValue = new();
+
         public Dices(Player player)
         {
             RollingDices(player);
         }
+
         public void RollingDices(Player player)
         {
             FirstDice = diceRandomValue.Next(1, 6);

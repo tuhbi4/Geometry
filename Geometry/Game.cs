@@ -22,8 +22,9 @@ namespace Geometry
 
         public void StartGame()
         {
-            StartGame(SelectGameMode(), false, false, false);
+            StartGame(RequestGameMode(), false, false, false);
         }
+
         public void StartGame(int gameMode, bool allDefault)
         {
             if (allDefault)
@@ -35,6 +36,7 @@ namespace Geometry
                 StartGame(gameMode, false, false, false);
             }
         }
+
         public void StartGame(int gameMode, bool defaultPlayersNames, bool defaultBoardSize, bool defaultTurnsCount)
         {
             GameMode = gameModesList[gameMode - 1];
@@ -44,7 +46,7 @@ namespace Geometry
             string fillerSecondPlayer;
             int cols;
             int rows;
-            int turns = 0;
+            int turns;
             if (defaultPlayersNames)
             {
                 nameFirstPlayer = ("Player 1");
@@ -71,7 +73,7 @@ namespace Geometry
             }
             else
             {
-                SetBoardSize(out cols, out rows);
+                RequestBoardSize(out cols, out rows);
             }
             if (defaultTurnsCount)
             {
@@ -79,10 +81,11 @@ namespace Geometry
             }
             else
             {
-                turns = SetNumberOfTurns();
+                turns = RequestNumberOfTurns();
             }
             StartGame(gameMode, nameFirstPlayer, fillerFirstPlayer, nameSecondPlayer, fillerSecondPlayer, cols, rows, turns);
         }
+
         public void StartGame(int gameMode, string nameFirstPlayer, string fillerFirstPlayer, string nameSecondPlayer, string fillerSecondPlayer, int cols, int rows, int turns)
         {
             GameMode = gameModesList[gameMode - 1];
@@ -94,9 +97,11 @@ namespace Geometry
                     case true when GameMode.Equals(gameModesList[0]):
                         Players.Add(new(nameSecondPlayer, fillerSecondPlayer, 1));
                         break;
+
                     case true when GameMode.Equals(gameModesList[1]):
                         Players.Add(new("Computer", fillerSecondPlayer, 1));
                         break;
+
                     default:
                         //throw new ArgumentException("Invalid argument value");
                         break;
@@ -108,6 +113,7 @@ namespace Geometry
             NextTurn();
             WhoWins();
         }
+
         public void IdentifyPlayers(out string nameFirstPlayer, out string fillerFirstPlayer, out string nameSecondPlayer, out string fillerSecondPlayer)
         {
             nameFirstPlayer = RequestName("Player 1");
@@ -121,11 +127,12 @@ namespace Geometry
                 fillerSecondPlayer = Players[0].Filler.Equals("%%%%") ? ("####") : ("%%%%");
             }
         }
+
         public void NextTurn()
         {
             while (!GameOver)
             {
-                CurrentTurns.IncrementTurnsCount();
+                CurrentTurns.IncrementCurrentTurnNumber();
                 if (CurrentTurns.CurrentTurnNumber == 1)
                 {
                     Console.WriteLine($"\nGame started! Current turn: {CurrentTurns.CurrentTurnNumber}.");
@@ -147,6 +154,7 @@ namespace Geometry
                 IsGameOver();
             }
         }
+
         public void IsGameOver()
         {
             foreach (Player player in Players)
@@ -171,10 +179,12 @@ namespace Geometry
                 SetWinner();
             }
         }
+
         public void SetWinner()
         {
             Winner = Players[0].FilledCells > Players[1].FilledCells ? Players[0].Name : Players[1].Name;
         }
+
         public void WhoWins()
         {
             Console.WriteLine($"\n*****GAME OVER!*****\nCongratulations {Winner}, you wins!");
